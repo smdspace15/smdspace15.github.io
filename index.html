@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sergio Montero Díaz — Infrastructure &amp; Operations Engineer</title>
+<meta name="description" content="Sergio Montero Díaz — Infrastructure &amp; Operations Engineer specialized in Kubernetes, Helm, GitOps and observability.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="bg-grid"></div>
+
+<header class="navbar" id="navbar">
+  <div class="container navbar__inner">
+    <a href="#top" class="logo">SM<span class="logo__dot">.</span>D</a>
+    <nav class="nav" id="nav">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#skills">Skills</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#contact" class="nav__cta">Contact</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero" id="hero">
+    <div class="container hero__inner">
+      <div class="hero__text">
+      <p class="hero__eyebrow"><span class="dot dot--live"></span> Málaga · Open to remote, hybrid &amp; relocation opportunities</p>
+      <h1 class="hero__title">Sergio Montero Díaz</h1>
+      <p class="hero__role">Infrastructure &amp; Operations Engineer</p>
+      <p class="hero__stack"><span>Kubernetes</span><span>·</span><span>Helm</span><span>·</span><span>GitOps</span><span>·</span><span>Observability</span></p>
+      <p class="hero__summary">
+        Infrastructure and operations professional with experience in Kubernetes, Helm, and GitOps
+        for deployment automation, as well as observability tools (Prometheus, Grafana, Loki) for
+        diagnosing and resolving incidents in complex systems.
+      </p>
+      <div class="hero__actions">
+        <a href="#contact" class="btn btn--primary">Get in touch</a>
+        <a href="assets/CV_Sergio_Montero_Diaz_EN.docx" class="btn btn--ghost" download>Download CV</a>
+      </div>
+      <div class="hero__meta">
+        <a href="mailto:sergiomonterodiaz15@gmail.com" class="hero__meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6.5A2.5 2.5 0 0 1 5.5 4h13A2.5 2.5 0 0 1 21 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5v-11Z"/><path d="m4 6.5 8 6 8-6"/></svg>
+          sergiomonterodiaz15@gmail.com
+        </a>
+        <a href="https://github.com/smdspace15" target="_blank" rel="noopener" class="hero__meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+          github.com/smdspace15
+        </a>
+        <a href="https://linkedin.com/in/sergiomonterodiaz" target="_blank" rel="noopener" class="hero__meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5V17M8 7.01V7M12 17v-4.2a2.2 2.2 0 0 1 4.4 0V17M12 12.5V17"/></svg>
+          linkedin.com/in/sergiomonterodiaz
+        </a>
+      </div>
+      </div>
+    <div class="hero__console" aria-hidden="true">
+      <div class="console">
+        <div class="console__bar"><span></span><span></span><span></span><p>~/sergio — zsh</p></div>
+        <div class="console__body">
+          <pre class="console__frame is-active"><code><span class="c-prompt">$</span> kubectl get deployments -n platform
+<span class="c-ok">NAME              READY   UP-TO-DATE   AVAILABLE</span>
+observability     3/3     3            3
+gitops-agent      2/2     2            2
+api-gateway       4/4     4            4
+
+<span class="c-prompt">$</span> flux reconcile kustomization apps
+<span class="c-ok">✓ annotated Kustomization/apps</span>
+<span class="c-ok">✓ reconciliation completed</span>
+
+<span class="c-prompt">$</span> helm upgrade --install monitoring ./chart
+<span class="c-ok">✓ release "monitoring" deployed</span></code></pre>
+          <pre class="console__frame"><code><span class="c-prompt">$</span> promtool check rules alerts/*.yaml
+<span class="c-ok">SUCCESS: 24 rules found</span>
+
+<span class="c-prompt">$</span> logcli query '{app="api-gateway"} |= "error"' --limit=5
+<span class="c-ok">2026-07-07T09:14  api-gateway  200 OK</span>
+<span class="c-ok">2026-07-07T09:14  api-gateway  200 OK</span>
+
+<span class="c-prompt">$</span> kubectl top pods -n platform
+<span class="c-ok">NAME              CPU(cores)   MEMORY(bytes)</span>
+observability     140m         310Mi
+gitops-agent      45m          98Mi</code></pre>
+          <pre class="console__frame"><code><span class="c-prompt">$</span> trivy image registry/app:v1.4.2
+<span class="c-ok">Total: 0 (HIGH: 0, CRITICAL: 0)</span>
+
+<span class="c-prompt">$</span> flux get kustomizations
+<span class="c-ok">NAME            READY   MESSAGE</span>
+apps            True    Applied revision
+infra           True    Applied revision
+monitoring      True    Applied revision
+
+<span class="c-prompt">$</span> kubectl rollout status deploy/api-gateway
+<span class="c-ok">deployment "api-gateway" successfully rolled out</span></code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="container">
+      <p class="section__label">01 · About</p>
+      <h2 class="section__title">Professional summary</h2>
+      <div class="about__grid">
+        <p class="about__text">
+          Infrastructure and operations professional with experience in Kubernetes, Helm, and GitOps
+          for deployment automation, as well as observability tools (Prometheus, Grafana, Loki) for
+          diagnosing and resolving incidents in complex systems.
+        </p>
+        <p class="about__text">
+          My background combines systems administration and cybersecurity with a progressive focus on
+          cloud-native infrastructure, working across both on-premise environments and container
+          orchestration technologies.
+        </p>
+        <p class="about__text">
+          Interested in continuous learning and sharing knowledge with other professionals in the field.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="experience">
+    <div class="container">
+      <p class="section__label">02 · Experience</p>
+      <h2 class="section__title">Career</h2>
+
+      <div class="timeline">
+        <article class="timeline__item">
+          <div class="timeline__dot"></div>
+          <div class="timeline__content">
+            <div class="timeline__head">
+              <h3>Jr. Infrastructure &amp; Operations Engineer</h3>
+              <span class="timeline__date">Mar 2025 — Present</span>
+            </div>
+            <p class="timeline__org">Tupl Inc. · Málaga, Andalusia, Spain</p>
+            <ul class="timeline__list">
+              <li>Deploying and managing Kubernetes clusters, using Helm for package management and GitOps (Flux) to automate and standardize the application lifecycle.</li>
+              <li>Maintaining the observability stack (Prometheus, Grafana, Loki, Alertmanager) for proactive monitoring, log centralization, and incident diagnosis across the platform.</li>
+              <li>Contributing to continuous platform improvement, identifying and resolving operational bottlenecks.</li>
+              <li>Conducting security reviews of images and deployments, applying patches and remediations for detected vulnerabilities.</li>
+              <li>Resolving production incidents, collaborating with the team to minimize impact and document root causes.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="timeline__item">
+          <div class="timeline__dot"></div>
+          <div class="timeline__content">
+            <div class="timeline__head">
+              <h3>System Administrator</h3>
+              <span class="timeline__date">Apr 2024 — Jun 2024</span>
+            </div>
+            <p class="timeline__org">Data Control Tecnologías de la Información, S.A. · Málaga, Spain · Remote</p>
+            <ul class="timeline__list">
+              <li>Supported the administration and maintenance of systems and servers, assisting with configuration tasks and incident resolution.</li>
+              <li>Installed and managed EDR (Endpoint Detection and Response) solutions on client systems.</li>
+              <li>Supported network infrastructure and operating systems management in a remote work environment.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="timeline__item">
+          <div class="timeline__dot"></div>
+          <div class="timeline__content">
+            <div class="timeline__head">
+              <h3>IT Technician</h3>
+              <span class="timeline__date">Jan 2021 — Apr 2021</span>
+            </div>
+            <p class="timeline__org">BIASSION SL · Málaga, Andalusia, Spain</p>
+            <ul class="timeline__list">
+              <li>Preventive equipment maintenance and technical analysis to anticipate and prevent issues.</li>
+              <li>Configuration and administration of virtualized environments and network devices.</li>
+              <li>Setup of monitoring systems, backup management, and remote and on-site technical support.</li>
+              <li>Resolved technical support incidents, diagnosing and troubleshooting hardware and software issues.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="education">
+    <div class="container">
+      <p class="section__label">03 · Education</p>
+      <h2 class="section__title">Academic background</h2>
+
+      <div class="cards-grid">
+        <article class="card">
+          <p class="card__date">Sep 2025 — Present</p>
+          <h3 class="card__title">Bachelor of Science in Computer Science</h3>
+          <p class="card__org">Universitat Oberta de Catalunya (UOC)</p>
+        </article>
+
+        <article class="card">
+          <p class="card__date">Jan 2022 — Feb 2024</p>
+          <h3 class="card__title">Higher Vocational Training, Network Systems Administration</h3>
+          <p class="card__org">Cesur</p>
+          <p class="card__badge">Grade: 9 / 10</p>
+        </article>
+
+        <article class="card">
+          <p class="card__date">Jun 2021 — Nov 2021</p>
+          <h3 class="card__title">Cybersecurity and Ethical Hacking Specialist</h3>
+          <p class="card__org">Escuela de Organización Industrial (EOI) · Information and Systems Security</p>
+        </article>
+
+        <article class="card">
+          <p class="card__date">2019 — 2021</p>
+          <h3 class="card__title">Vocational Training, Microcomputer Systems and Networks</h3>
+          <p class="card__org">iFP. Innovación en Formación Profesional</p>
+          <p class="card__badge">Grade: 8.50 / 10</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="skills">
+    <div class="container">
+      <p class="section__label">04 · Skills</p>
+      <h2 class="section__title">Technical stack</h2>
+
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h3>Cloud-native &amp; Orchestration</h3>
+          <div class="tags">
+            <span class="tag">Kubernetes</span><span class="tag">Helm</span><span class="tag">GitOps (Flux)</span><span class="tag">Docker</span><span class="tag">AWS</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Observability</h3>
+          <div class="tags">
+            <span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">Loki</span><span class="tag">Alertmanager</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Systems &amp; Networking</h3>
+          <div class="tags">
+            <span class="tag">Linux</span><span class="tag">Systems Administration</span><span class="tag">Virtualization</span><span class="tag">Network Operations</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Security</h3>
+          <div class="tags">
+            <span class="tag">Cybersecurity</span><span class="tag">Penetration Testing</span><span class="tag">EDR</span><span class="tag">Digital Forensics</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Development &amp; Tools</h3>
+          <div class="tags">
+            <span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Bash</span><span class="tag">Java</span><span class="tag">C++</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Languages</h3>
+          <div class="tags">
+            <span class="tag">Spanish — Native</span><span class="tag">English — C1 (Aptis)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="certifications">
+    <div class="container">
+      <p class="section__label">05 · Certifications</p>
+      <h2 class="section__title">Licenses &amp; certifications</h2>
+
+      <div class="cert-list">
+        <div class="cert-item"><span class="cert-item__name">Aptis Level 2 Certificate ESOL International C1</span><span class="cert-item__meta">British Council · Jun 2025</span></div>
+        <div class="cert-item"><span class="cert-item__name">Ultimate AWS Certified Solutions Architect Associate 2025</span><span class="cert-item__meta">Udemy · Jan 2025</span></div>
+        <div class="cert-item"><span class="cert-item__name">Applied Digital Forensics</span><span class="cert-item__meta">Universidad de Málaga · Dec 2024</span></div>
+        <div class="cert-item"><span class="cert-item__name">Learn Bash Scripting Course</span><span class="cert-item__meta">Codecademy · May 2025</span></div>
+        <div class="cert-item"><span class="cert-item__name">Learn Git &amp; GitHub Course</span><span class="cert-item__meta">Codecademy · May 2025</span></div>
+        <div class="cert-item"><span class="cert-item__name">Learn Java Course</span><span class="cert-item__meta">Codecademy · May 2025</span></div>
+        <div class="cert-item"><span class="cert-item__name">MSP Level III - Co-MXDR</span><span class="cert-item__meta">TrendAI · May 2024</span></div>
+        <div class="cert-item"><span class="cert-item__name">MSP Level II - XDR</span><span class="cert-item__meta">TrendAI · May 2024</span></div>
+        <div class="cert-item"><span class="cert-item__name">DEHO 103 - Pentesting</span><span class="cert-item__meta">Deloitte · Jul 2020</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="contact">
+    <div class="container">
+      <p class="section__label">06 · Contact</p>
+      <h2 class="section__title">Let&#x2019;s talk</h2>
+      <p class="contact__intro">Looking to strengthen your infrastructure or platform team? Reach out — I&#x2019;m available.</p>
+
+      <div class="contact-grid">
+        <a href="mailto:sergiomonterodiaz15@gmail.com" class="contact-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6.5A2.5 2.5 0 0 1 5.5 4h13A2.5 2.5 0 0 1 21 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5v-11Z"/><path d="m4 6.5 8 6 8-6"/></svg>
+          <div><span class="contact-card__label">Email</span><span class="contact-card__value">sergiomonterodiaz15@gmail.com</span></div>
+        </a>
+        <a href="https://github.com/smdspace15" target="_blank" rel="noopener" class="contact-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+          <div><span class="contact-card__label">GitHub</span><span class="contact-card__value">/smdspace15</span></div>
+        </a>
+        <a href="https://linkedin.com/in/sergiomonterodiaz" target="_blank" rel="noopener" class="contact-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5V17M8 7.01V7M12 17v-4.2a2.2 2.2 0 0 1 4.4 0V17M12 12.5V17"/></svg>
+          <div><span class="contact-card__label">LinkedIn</span><span class="contact-card__value">/in/sergiomonterodiaz</span></div>
+        </a>
+        <div class="contact-card contact-card--static">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          <div><span class="contact-card__label">Location</span><span class="contact-card__value">Málaga, Andalusia, Spain</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <p>© <span id="year"></span> Sergio Montero Díaz</p>
+    <p class="footer__tag">Built with plain HTML, CSS and JS.</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

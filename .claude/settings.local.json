@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/sergiomonterodiaz/Library/Application Support/Claude/local-agent-mode-sessions/skills-plugin/2fdd06b7-cf1c-476b-8e25-1bc313d0d375/4f4ce21a-39b3-4fd5-9fe0-f5efec37e116/skills/docx/**)",
+      "Bash(extract-text \"/Users/sergiomonterodiaz/Downloads/CV_Sergio_Montero_Diaz_EN.docx\")",
+      "Bash(pip show *)",
+      "Bash(pandoc \"/Users/sergiomonterodiaz/Downloads/CV_Sergio_Montero_Diaz_EN.docx\" -t markdown)",
+      "Bash(python3 -c \"import docx\")",
+      "Bash(python3 -c ' *)",
+      "Bash(python3 \"/Users/sergiomonterodiaz/Library/Application Support/Claude/local-agent-mode-sessions/skills-plugin/2fdd06b7-cf1c-476b-8e25-1bc313d0d375/4f4ce21a-39b3-4fd5-9fe0-f5efec37e116/skills/docx/scripts/office/unpack.py\" \"/Users/sergiomonterodiaz/Downloads/CV_Sergio_Montero_Diaz_EN.docx\" /private/tmp/claude-501/-Users-sergiomonterodiaz-personal-web/c7801a2e-6893-4167-846e-e56c76df5f8f/scratchpad/cv_unpacked/)"
+    ]
+  }
+}
