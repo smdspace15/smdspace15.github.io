@@ -146,10 +146,10 @@ monitoring      True    Applied revision
           <p class="card__date">Linux distribution · v0.11 · in active development</p>
           <h3 class="card__title project-card__title">DimOS</h3>
           <p class="project-card__lead">A hardened Linux distribution built from scratch, without inheriting decisions from an upstream distro.</p>
-          <p class="card__desc">Cross-compiled against musl for x86_64 and arm64, with installable profiles (base, server, desktop) and its own package manager, <code>dim</code>, with Ed25519-signed packages. No systemd, PAM or GRUB: every component is a deliberate choice, documented in its own design doc.</p>
+          <p class="card__desc">Cross-compiled against musl for x86_64 and arm64, with installable profiles (base, server, desktop) and its own package manager, <code>dim</code>, with Ed25519-signed packages. No systemd or GRUB, and no PAM in the login path: every component is a deliberate choice, documented in its own design doc.</p>
           <ul class="project-card__facts">
             <li><strong>Secure by default</strong> LUKS2, default-deny nftables, auditd, AppArmor, hardened kernel</li>
-            <li><strong>Verified boot</strong> Secure Boot with project-owned keys</li>
+            <li><strong>Verified boot</strong> optional Secure Boot with each node&#x2019;s own key, plus A/B kernel updates</li>
             <li><strong>Reproducible</strong> signed ISO (~187 MiB), bit-identical across builds</li>
           </ul>
           <div class="project-card__tags">
