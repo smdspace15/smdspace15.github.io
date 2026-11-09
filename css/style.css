@@ -411,6 +411,56 @@ p{ margin:0; }
 }
 .project-card__link:hover{ color: var(--accent-2); }
 
+/* Projects */
+.projects-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+.project-card__title{ font-size: 1.4rem; }
+.project-card__lead{ color: var(--text); font-size: 1rem; }
+.project-card .card__desc{ margin-bottom: 16px; }
+.card__desc code{ font-family: var(--font-mono); color: var(--accent); font-size: 0.85em; }
+.project-card__facts{ display:flex; flex-direction:column; gap:10px; margin-bottom: 18px; }
+.project-card__facts li{
+  font-size: 0.88rem;
+  color: var(--text-dim);
+  padding-left: 14px;
+  border-left: 2px solid rgba(79,209,197,0.35);
+}
+.project-card__facts strong{
+  display:block;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight:500;
+  color: var(--accent);
+}
+.project-card__note{
+  margin-top: auto;
+  padding-top: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-faint);
+}
+
+/* Writing */
+.writing__intro{ color: var(--text-dim); max-width: 620px; margin: -24px 0 32px; font-size: 1.02rem; }
+.writing-list{ display:flex; flex-direction:column; gap: 2px; background: var(--border); border:1px solid var(--border); border-radius: var(--radius); overflow:hidden; margin-bottom: 28px; }
+.writing-item{ background: var(--surface); padding: 22px 24px; }
+.writing-item__meta{ font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-2); }
+.writing-item__title{ font-size: 1.1rem; margin: 6px 0; }
+.writing-item__desc{ color: var(--text-dim); font-size: 0.92rem; }
+.newsletter{
+  display:flex; align-items:center; justify-content:space-between; gap: 20px; flex-wrap:wrap;
+  background: var(--accent-soft);
+  border: 1px solid rgba(79,209,197,0.3);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+.newsletter__title{ font-size: 1.05rem; margin-bottom: 4px; }
+.newsletter__desc{ color: var(--text-dim); font-size: 0.92rem; }
+.newsletter__soon{ cursor: default; }
+
 /* Certifications */
 .cert-list{
   display:grid;
