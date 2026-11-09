@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Writing — Sergio Montero Díaz</title>
+<meta name="description" content="Notes from building DimOS, a hardened Linux distribution, and Atlas, a fully local AI assistant.">
+<link rel="canonical" href="https://smdspace.es/blog/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://smdspace.es/blog/">
+<meta property="og:title" content="Writing — Sergio Montero Díaz">
+<meta property="og:description" content="Notes from building DimOS, a hardened Linux distribution, and Atlas, a fully local AI assistant.">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="bg-grid"></div>
+
+<header class="navbar" id="navbar">
+  <div class="container navbar__inner">
+    <a href="/" class="logo">SM<span class="logo__dot">.</span>D</a>
+    <nav class="nav" id="nav">
+      <a href="/#about">About</a>
+      <a href="/#projects">Projects</a>
+      <a href="/blog/">Writing</a>
+      <a href="/#experience">Experience</a>
+      <a href="/#skills">Skills</a>
+      <a href="/#contact" class="nav__cta">Contact</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="section">
+    <div class="container">
+      <p class="section__label">Writing</p>
+      <h1 class="section__title">Notes from the build</h1>
+      <p class="writing__intro">What breaks, why it breaks and how I fixed it, from building DimOS and Atlas.</p>
+
+      <div class="writing-list">
+        <a class="writing-item writing-item--link" href="/blog/stopped-letting-my-assistant-do-maths/">
+          <span class="writing-item__meta">Nov 2026 · Atlas · 6 min read</span>
+          <h2 class="writing-item__title">My assistant said 7919 × 6571 = 51,948,849. Why I stopped letting it do maths</h2>
+          <p class="writing-item__desc">Measuring a 7B model's failures, and the rule that fixed them: code computes, the model explains.</p>
+        </a>
+      </div>
+
+      <div class="newsletter">
+        <div>
+          <h3 class="newsletter__title">Free checklist: harden your Linux server in 20 checks</h3>
+          <p class="newsletter__desc">The checks behind DimOS, each with the command to verify it on your own machine.</p>
+        </div>
+        <!-- KIT: replace this placeholder with the Kit form embed -->
+        <span class="btn btn--ghost newsletter__soon">Coming soon</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <p>© <span id="year"></span> Sergio Montero Díaz</p>
+    <p class="footer__tag">Built with plain HTML, CSS and JS.</p>
+  </div>
+</footer>
+
+<script src="/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My assistant said 7919 × 6571 = 51,948,849. Why I stopped letting it do maths — Sergio Montero Díaz</title>
+<meta name="description" content="Measuring a 7B model&#x27;s failures in Atlas, my local AI assistant, and the rule that fixed them: code computes, the model explains.">
+<link rel="canonical" href="https://smdspace.es/blog/stopped-letting-my-assistant-do-maths/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://smdspace.es/blog/stopped-letting-my-assistant-do-maths/">
+<meta property="og:title" content="My assistant said 7919 × 6571 = 51,948,849. Why I stopped letting it do maths — Sergio Montero Díaz">
+<meta property="og:description" content="Measuring a 7B model&#x27;s failures in Atlas, my local AI assistant, and the rule that fixed them: code computes, the model explains.">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="bg-grid"></div>
+
+<header class="navbar" id="navbar">
+  <div class="container navbar__inner">
+    <a href="/" class="logo">SM<span class="logo__dot">.</span>D</a>
+    <nav class="nav" id="nav">
+      <a href="/#about">About</a>
+      <a href="/#projects">Projects</a>
+      <a href="/blog/">Writing</a>
+      <a href="/#experience">Experience</a>
+      <a href="/#skills">Skills</a>
+      <a href="/#contact" class="nav__cta">Contact</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <article class="post">
+    <div class="container post__container">
+      <a href="/blog/" class="post__back">← All writing</a>
+      <p class="post__meta">Nov 2026 · Atlas · 6 min read</p>
+      <h1 class="post__title">My assistant said 7919 × 6571 = 51,948,849. Why I stopped letting it do maths</h1>
+      <p class="post__lead">I asked Atlas, my local AI assistant, what 7919 times 6571 is. It answered confidently: 51,948,849. It also said it had used its calculator. Both claims were false.</p>
+
+      <div class="post__body">
+        <p>The correct result is 52,035,749, and no tool had been called. This post is about that failure, how I measured it, and the design rule I took from it.</p>
+
+        <h2>The setup</h2>
+        <p>Atlas is a personal assistant that runs on my own hardware. The language model is <code>qwen2.5:7b</code> on Ollama, and around it there are about fifty tools: calendar, email, weather, web search and, more recently, exact maths and physics built on SymPy and pint.</p>
+        <p>A 7-billion-parameter model fits on a home GPU and explains things well. What it doesn't do well is arithmetic.</p>
+
+        <h2>Measuring it</h2>
+        <p>I didn't trust my impression. I ran 12 science questions three times on the mini PC: 33 out of 36 correct, at about 8 seconds per answer. That sounds fine, but the failures were more interesting than the successes:</p>
+        <ul>
+          <li>Sometimes it said nothing at all: no text, no tool call, just an empty message.</li>
+          <li>Sometimes it called the algebra tool without saying which operation to run.</li>
+          <li>It wrote LaTeX (<code>\frac{1}{2}</code>) even though the prompt forbade it, and read aloud by a voice assistant, that sounds terrible.</li>
+        </ul>
+        <p>Then I ran a second round with calculations nobody can answer from memory. That exposed the worst failure: the model answered without the tool, claimed it had used it, and gave a made-up number. Exactly the 7919 × 6571 case.</p>
+
+        <h2>Why it happens</h2>
+        <p>A language model doesn't calculate. It predicts the most likely text. For "2 + 2", the most likely text is the right answer. For an eight-digit product, the most likely text is a number with the right shape and the wrong digits. And because it has seen thousands of answers that say "I used the calculator", it can write that sentence without having done it.</p>
+        <p>The problem isn't that it gets things wrong. It's that it gets them wrong with exactly the same confidence as when it gets them right.</p>
+
+        <h2>The fix: code computes, the model explains</h2>
+        <p>The rule Atlas follows now is simple: <strong>anything that must be exact is done by code; the model only explains it.</strong> It already worked this way for dates, because the model kept getting "next Friday" wrong. I extended it to numbers:</p>
+        <ol>
+          <li><strong>Simple calculations are solved before the model sees them.</strong> "X times Y", "18.5% of N" or "the square root of N" are detected and computed by code, and the model receives the result to write the answer around.</li>
+          <li><strong>A clear calculation request answered without a tool is discarded.</strong> If I ask it to solve, differentiate or integrate and it answers without the tool, that answer is thrown away and retried once, this time requiring the tool. Explanations ("what is a derivative?") still don't need one.</li>
+          <li><strong>Numbers are checked on the way out.</strong> If a number in the answer matches a tool result but comes back with mangled thousands separators, it gets restored.</li>
+          <li><strong>Silence has a fallback.</strong> If the model returns nothing, it's retried once; if it's still silent, the user gets the result of the tool that already ran.</li>
+          <li><strong>LaTeX is converted to plain text</strong> in every answer, without touching Windows paths, amounts of money or code blocks.</li>
+        </ol>
+        <p>The first point is the one that matters most. In simplified form, the idea looks like this:</p>
+<pre class="post__code"><code>import re
+from decimal import Decimal
+
+MUL = re.compile(r"(\d+(?:\.\d+)?)\s*(?:x|×|\*|times)\s*(\d+(?:\.\d+)?)", re.I)
+
+def arithmetic_hint(question: str) -&gt; str | None:
+    """Compute simple products in code, so the model never has to."""
+    m = MUL.search(question)
+    if not m:
+        return None
+    a, b = (Decimal(s) for s in m.groups())
+    return f"Exact result (computed by code): {a} × {b} = {a * b}"
+
+arithmetic_hint("What is 7919 times 6571?")
+# 'Exact result (computed by code): 7919 × 6571 = 52035749'</code></pre>
+        <p>The hint goes into the model's context with the question. The model's job shrinks from "calculate and explain" to "explain this result", which a 7B model does well.</p>
+
+        <h2>When I tried to be clever</h2>
+        <p>One of my first fixes was to let the code guess the operation when the model forgot to specify it. The result: Atlas stated that the derivative of x·sin(x) is x·sin(x). Now, when information is missing, nothing gets guessed. It's the same lesson on a smaller scale: deterministic code only helps if it doesn't start imitating the model.</p>
+
+        <h2>The general rule</h2>
+        <p>If you build something with a small model, don't ask it to do everything. Split the work: the model understands the question and writes the answer, and code handles everything that has to be exact, such as dates, arithmetic, units and data. And test it with questions whose answers can't be guessed, because the easy ones hide exactly the failures that matter.</p>
+      </div>
+
+      <div class="newsletter">
+        <div>
+          <h3 class="newsletter__title">Free checklist: harden your Linux server in 20 checks</h3>
+          <p class="newsletter__desc">The checks behind DimOS, each with the command to verify it on your own machine.</p>
+        </div>
+        <!-- KIT: replace this placeholder with the Kit form embed -->
+        <span class="btn btn--ghost newsletter__soon">Coming soon</span>
+      </div>
+    </div>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <p>© <span id="year"></span> Sergio Montero Díaz</p>
+    <p class="footer__tag">Built with plain HTML, CSS and JS.</p>
+  </div>
+</footer>
+
+<script src="/js/main.js"></script>
+</body>
+</html>
