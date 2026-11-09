@@ -460,6 +460,7 @@ p{ margin:0; }
 .newsletter__title{ font-size: 1.05rem; margin-bottom: 4px; }
 .newsletter__desc{ color: var(--text-dim); font-size: 0.92rem; }
 .newsletter__soon{ cursor: default; }
+.newsletter__form{ flex: 1 1 340px; max-width: 460px; min-height: 56px; }
 
 .writing-item--link{ display:block; transition: background .2s ease; }
 .writing-item--link:hover{ background: var(--surface-2); }
