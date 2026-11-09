@@ -490,6 +490,11 @@ p{ margin:0; }
 .post__code{ line-height: 1.5; font-size: 0.85rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; overflow-x: auto; margin: 0 0 20px; }
 .post__code code{ background: none; border: 0; padding: 0; color: var(--text); font-size: 0.85rem; line-height: 1.6; }
 
+.post__table{ overflow-x: auto; margin: 0 0 20px; border: 1px solid var(--border); border-radius: var(--radius); }
+.post__table table{ width: 100%; border-collapse: collapse; font-size: 0.9rem; min-width: 560px; }
+.post__table th{ text-align: left; color: var(--text); background: var(--surface); padding: 10px 12px; font-weight: 600; }
+.post__table td{ padding: 10px 12px; border-top: 1px solid var(--border); vertical-align: top; }
+
 /* Certifications */
 .cert-list{
   display:grid;
